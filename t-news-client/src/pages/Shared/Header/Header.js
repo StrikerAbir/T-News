@@ -36,19 +36,34 @@ const Header = () => {
           <Nav>
             <Nav.Link href="#deets">
               {user?.uid ? (
-                <>
-                  <span>{user?.displayName}</span>
-                  <Button onClick='handleLogOut' variant="light">Light</Button>
-                </>
+                <div className="d-flex align-items-center">
+                  <div className="me-3">
+                    <span className="me-3">{user?.displayName}</span>
+                    {user?.photoURL ? (
+                      <Image
+                        style={{ height: "40px" }}
+                        roundedCircle
+                        src={user.photoURL}
+                      ></Image>
+                    ) : (
+                      <FaUser></FaUser>
+                    )}
+                  </div>
+                  <Button onClick={handleLogOut} variant="light border">
+                    Logout
+                  </Button>
+                </div>
               ) : (
                 <>
-                  <Link className='me-3' to="/login">Login</Link>
+                  <Link className="me-3" to="/login">
+                    Login
+                  </Link>
                   <Link to="/register">Register</Link>
                 </>
               )}
             </Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
-              {user?.photoURL ? (
+              {/* {user?.photoURL ? (
                 <Image
                   style={{ height: "40px" }}
                   roundedCircle
@@ -56,7 +71,7 @@ const Header = () => {
                 ></Image>
               ) : (
                 <FaUser></FaUser>
-              )}
+              )} */}
             </Nav.Link>
           </Nav>
           <div className="d-lg-none">
