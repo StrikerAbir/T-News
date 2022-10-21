@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 
 const Register = () => {
+        const [error, setError] = useState(null);
+
     const { user, createUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -21,10 +23,12 @@ const Register = () => {
         const user = result.user;
         console.log(user);
           form.reset();
+          setError(null)
           navigate('/')
       })
       .catch((err) => {
-        console.error("error", err);
+          console.error("error", err);
+          setError(err.message);
       });
   };
 
@@ -56,13 +60,11 @@ const Register = () => {
           required
         />
       </Form.Group>
-      {/* {user?.uid && (
+      {error !== null && (
         <Form.Group className="mb-3">
-          <Form.Text className="text-success">
-            Successfully registered.
-          </Form.Text>
+          <Form.Text className="text-danger">{error}</Form.Text>
         </Form.Group>
-      )} */}
+      )}
 
       <Button variant="primary" type="submit">
         Register

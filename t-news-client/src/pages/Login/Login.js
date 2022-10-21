@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const [error,setError]=useState(null)
+    const [error, setError] = useState(null);
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -19,11 +19,11 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             form.reset();
+            setError(null);
             navigate('/');
-            setError(null)
         }).catch(err => {
             console.error(err);
-            setError('Wrong password or email.');
+            setError(err.message);
         });
      
     };
