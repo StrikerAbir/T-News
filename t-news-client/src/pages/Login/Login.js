@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const {user, signIn } = useContext(AuthContext);
+    const [error,setError]=useState(null)
+    const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
@@ -19,7 +20,11 @@ const Login = () => {
             console.log(user);
             form.reset();
             navigate('/');
-        }).catch(err => console.error(err));
+            setError(null)
+        }).catch(err => {
+            console.error(err);
+            setError('Wrong password or email.');
+        });
      
     };
    
@@ -44,11 +49,11 @@ const Login = () => {
             required
           />
         </Form.Group>
-        {/* {user.uid || (
+        {error !== null && (
           <Form.Group className="mb-3">
-            <Form.Text className="text-danger">Wrong Password.</Form.Text>
+                    <Form.Text className="text-danger">{ error }</Form.Text>
           </Form.Group>
-        )} */}
+        )}
 
         <Button variant="primary" type="submit">
           Login
