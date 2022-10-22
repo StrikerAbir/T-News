@@ -34,20 +34,22 @@ const Header = () => {
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">
+            <>
               {user?.uid ? (
                 <div className="d-flex align-items-center">
                   <div className="me-3">
                     <span className="me-3">{user?.displayName}</span>
-                    {user?.photoURL ? (
-                      <Image
-                        style={{ height: "40px" }}
-                        roundedCircle
-                        src={user.photoURL}
-                      ></Image>
-                    ) : (
-                      <FaUser></FaUser>
-                    )}
+                    <Link to='/profile'>
+                      {user?.photoURL ? (
+                        <Image
+                          style={{ height: "40px" }}
+                          roundedCircle
+                          src={user.photoURL}
+                        ></Image>
+                      ) : (
+                        <FaUser></FaUser>
+                      )}
+                    </Link>
                   </div>
                   <Button onClick={handleLogOut} variant="light border">
                     Logout
@@ -61,7 +63,7 @@ const Header = () => {
                   <Link to="/register">Register</Link>
                 </>
               )}
-            </Nav.Link>
+            </>
           </Nav>
           <div className="d-lg-none">
             <LeftNav></LeftNav>
