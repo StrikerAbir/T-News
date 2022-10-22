@@ -17,13 +17,15 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:1000/news"),
+        loader: () => fetch("https://t-news-server.vercel.app/news"),
       },
       {
         path: "/category/:id",
         element: <Category></Category>,
         loader: ({ params }) => {
-          return fetch(`http://localhost:1000/category/${params.id}`);
+          return fetch(
+            `https://t-news-server.vercel.app/category/${params.id}`
+          );
         },
       },
       {
@@ -34,7 +36,7 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:1000/news/${params.id}`),
+          fetch(`https://t-news-server.vercel.app/news/${params.id}`),
       },
       {
         path: "/login",
@@ -43,15 +45,19 @@ export const routes = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
-        },
-        {
-            path: '/terms',
-            element: <TermsAndConditions></TermsAndConditions>,
-        },
-        {
-            path: "/profile",
-        element:  <PrivateRoute><Profile></Profile></PrivateRoute>,
-      }
+      },
+      {
+        path: "/terms",
+        element: <TermsAndConditions></TermsAndConditions>,
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
