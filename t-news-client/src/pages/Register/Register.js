@@ -28,7 +28,7 @@ const Register = () => {
           setError(null);
           handleUpdateProfile(name, photoURL);
           handleEmailVerification();
-          toast.success('Please verify your email address.')
+          toast.success('Check your email in spam folder and verify. ')
       })
       .catch((err) => {
         console.error("error", err);
