@@ -4,8 +4,10 @@ import Form from "react-bootstrap/Form";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import toast from "react-hot-toast";
+import useTitle from '../../Hooks/useTitle';
 
 const Login = () => {
+  useTitle("Login");
     const [error, setError] = useState(null);
     const { signIn,setLoading } = useContext(AuthContext);
     const navigate = useNavigate();

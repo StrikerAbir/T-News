@@ -4,8 +4,10 @@ import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import useTitle from "../../Hooks/useTitle";
 
 const Register = () => {
+  useTitle("Register");
   const [error, setError] = useState(null);
   const [accepted, setAccepted] = useState(false);
 
